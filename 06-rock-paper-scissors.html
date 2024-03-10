@@ -21,6 +21,10 @@
 		playGame('Scissors');
     ">Scissors</button>
     
+	<p class="js-result"></p>
+	<p class="js-moves"></p>
+	<p class="js-score"></p>
+
 	<button onclick="
 		ResetScore();
     ">Reset Score</button>
@@ -41,7 +45,9 @@
 				wins: 0,
 				losses : 0,
 				ties : 0
-			};
+		};
+
+		updateScoreElement();
 
 		// if(!score){
 		// 	score = {
@@ -54,7 +60,9 @@
 		function ResetScore(){
 			score.wins = 0;
 			score.losses = 0;
-			score.ties = 0;
+			score.ties = 0;			
+			updateResult_MovesElement('','');
+			updateScoreElement();
 			localStorage.removeItem('score');
 		}
 
@@ -70,12 +78,26 @@
 				score.losses += 1;
 			}else if(ComputerMove === 'Scissors' && playerMove === 'Rock' || ComputerMove === 'Rock' && playerMove === 'Paper' || ComputerMove === 'Paper' && playerMove === 'Scissors'){
 				result = 'You Win';
-				score.wins += 1; 
+				score.wins += 1;
 			}
 
-			localStorage.setItem('score', JSON.stringify(score));
+			updateResult_MovesElement(result, `You ${playerMove} : ${ComputerMove} Computer`);
 
-        	alert(`You chose ${playerMove} and Computer chose ${ComputerMove}. ${result} \nWins : ${score.wins} Losses: ${score.losses} Ties : ${score.ties}`);
+			localStorage.setItem('score', JSON.stringify(score));
+			
+			updateScoreElement();
+
+        	// alert(`You chose ${playerMove} and Computer chose ${ComputerMove}. ${result} \nWins : ${score.wins} Losses: ${score.losses} Ties : ${score.ties}`);
+		}
+
+		function updateScoreElement(){
+			document.querySelector('.js-score').innerHTML = `Wins : ${score.wins} Losses: ${score.losses} Ties : ${score.ties}`;
+		}
+
+		function updateResult_MovesElement(result, moves){
+			
+			document.querySelector('.js-result').innerHTML = result;
+			document.querySelector('.js-moves').innerHTML = moves
 		}
 
 		function pickComputerMove(){
