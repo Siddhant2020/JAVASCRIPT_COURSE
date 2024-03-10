@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Booleans</title>
+</head>
+<body>
+		
+
+		
+	<script>
+
+		/*
+		Falsy Values
+		false	  0  	''   NaN   undefined   null 
+		*/
+
+		
+		console.log(3 > 5);
+		console.log(5 === '5.00');	//false
+		console.log(5 == '5.00');		//true
+
+		//ternary operator
+		const result =	true ? 'truthy' : 'falsy';
+		const result2 =	0 ? 'truthy' : 'falsy';
+		console.log(result)
+		console.log(result2)
+
+		//Guard Operator
+		// false && console.log('hello');
+		const message = false && 'hello';
+		console.log(message);
+
+		//Defuault Operator
+		const currency = undefined || 'USD';
+		console.log(currency);
+
+	</script>
+</body>
+</html>
