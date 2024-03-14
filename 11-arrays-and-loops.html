@@ -77,8 +77,33 @@
         console.log(numsDoubled);
         */
 
+        /*
         const array1 = [1,2,3];
-        const array2 = array1;
+        const array2 = array1.slice();
+        array2.push(4);
+        console.log(array1);
+        console.log(array2);
+
+
+        const [firstValue, secondValue, thirdValue] = [1,2,3];
+
+        console.log(firstValue);
+        */
+
+
+        function doubleArray(nums){
+            const numsDoubled = [];
+            for (let i = 0; i < nums.length; i++) {
+                numsDoubled.push( 2* nums[i]);
+            }
+            // console.log(numsDoubled);
+            return numsDoubled;
+        }
+
+        console.log(doubleArray([2,0,6]));
+        console.log(doubleArray([2,4,6,4]));
+        console.log(doubleArray([2,4]));
+        
 
     </script>
 
