@@ -24,6 +24,16 @@
     // 	}
     // }
 
+    document.body.addEventListener('keydown', (event) => {
+        if(event.key === 'r'){
+            playGame('rock');
+        }else if(event.key === 'p'){
+            playGame('paper');
+        }else if(event.key === 's'){
+            playGame('scissors');
+        }
+     });
+
     function ResetScore(){
         score.wins = 0;
         score.losses = 0;
@@ -83,4 +93,19 @@
             ComputerMove = 'scissors';
         }
         return ComputerMove;
+    }
+    
+    let intervalId = 0;
+    function autoPlay(){
+        let autoPlayState = document.querySelector('.autoPlay-button').innerHTML
+        if(autoPlayState === 'Auto Play'){
+            document.querySelector('.autoPlay-button').innerHTML = 'Stop Play';
+            intervalId = setInterval(function(){
+                let playerMove = pickComputerMove();
+                playGame(playerMove);
+            }, 2000);
+        }else if(autoPlayState === 'Stop Play'){
+            clearInterval(intervalId);
+            document.querySelector('.autoPlay-button').innerHTML = 'Auto Play';
+        }
     }
